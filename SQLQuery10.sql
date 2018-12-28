@@ -35,19 +35,20 @@ BEGIN
 	CREATE TABLE tbl_bookAuthor(
 		bookAuthor_bookID INT PRIMARY KEY NOT NULL IDENTITY (101,1),
 		bookAuthor_authorName VARCHAR (50) NOT NULL,
-		bookAuthor_book INT NOT NULL CONSTRAINT fk_bookID  FOREIGN KEY REFERENCES tbl_book(book_id) ON UPDATE CASCADE ON DELETE CASCADE);
+		bookAuthor_book INT NOT NULL CONSTRAINT fk_bookID FOREIGN KEY REFERENCES tbl_book(book_id) ON UPDATE CASCADE ON DELETE CASCADE);
 
 	CREATE TABLE tbl_bookCopies(
-		bookCopies_bookID INT PRIMARY KEY NOT NULL IDENTITY (1000,1),
-		bookCopies_book VARCHAR(50) NOT NULL CONSTRAINT fk_title  FOREIGN KEY REFERENCES tbl_book(book_title) ON UPDATE CASCADE ON DELETE CASCADE,
-		bookCopies_library_branch INT NOT NULL CONSTRAINT fk_branchID FOREIGN KEY REFERENCES tbl_library_branch(branch_id)ON UPDATE CASCADE ON DELETE CASCADE);
-
+		bookCopies_bookID INT PRIMARY KEY NOT NULL IDENTITY (101,1),
+		bookCopies_book INT NOT NULL CONSTRAINT fk_bookName FOREIGN KEY  REFERENCES  tbl_book(bookID)ON UPDATE CASCADE ON DELETE CASCADE,
+		bookCopies_library_branch INT NOT NULL CONSTRAINT fk_branchIdentification FOREIGN KEY REFERENCES tbl_library_branch(branchID)ON UPDATE CASCADE ON DELETE CASCADE,
+		bookCopies_Number_of_Copies INT NOT NULL
+		);
 
 	CREATE TABLE tbl_bookLoan(
 		bookLoan_bookID INT PRIMARY KEY NOT NULL IDENTITY (20,1),
 		bookLoan_library_branch INT NOT NULL CONSTRAINT fk_branch_id FOREIGN KEY REFERENCES tbl_library_branch(branch_id)ON UPDATE CASCADE ON DELETE CASCADE,
-		bookLoan_borrower INT NOT NULL CONSTRAINT fk_cardNo FOREIGN KEY REFERENCES tbl_borrower(borrower_cardNo)ON UPDATE CASCADE ON DELETE CASCADE);
-
+		bookLoan_borrower INT NOT NULL CONSTRAINT fk_cardNo FOREIGN KEY REFERENCES tbl_borrower(borrower_cardNo)ON UPDATE CASCADE ON DELETE CASCADE,
+		bookLoan_DateOut DATE NOT NULL, bookLoan_DateDue DATE NOT NULL);
 	 
 
 
