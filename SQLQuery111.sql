@@ -129,7 +129,20 @@ WHERE BL.branchID=L.branch_id
 GROUP BY L.branch_name;
 END
  
- /******  StoredProcedure [dbo].[uspTryCatchTests] (ERROR Identifier exampl of  multi-properties  )   ******/
+ /**StephenKing book in Centra branch (title,#of book copies [dbo].[getinfoStephenKinginCentral]**/
+
+CREATE PROCEDURE dbo.getinfoStephenKinginCentral
+AS
+
+GO
+
+ SELECT Title, Number_of_Copies
+FROM ( ( ( tbl_bookAuthor NATURAL JOIN tbl_book) NATURAL JOIN tbl_bookCopies)
+NATURAL JOIN tbl_library_branch)
+WHERE authorName = 'Stephen King' and branch_name = 'Central'
+
+
+/******  StoredProcedure [dbo].[uspTryCatchTests] (ERROR Identifier exampl of  multi-properties  )   ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
