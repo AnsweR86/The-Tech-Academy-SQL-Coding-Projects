@@ -14,10 +14,10 @@ BEGIN
 		INSERT INTO tbl_library_branch
 		(branch_name, branch_address)
 		VALUES
-		('Sharpstown','NULL'),
-		('Central','');
-		('Up-town',''),
-		('Western','');
+		('Sharpstown','1000 Northview Ave. So...'),
+		('Central','P.O Box Central Distric'),
+		('Up-town','221 Panther st'),
+		('Western','1001 Abby st..');
 
 
 
@@ -29,10 +29,10 @@ BEGIN
 
 
 		INSERT INTO tbl_Publisher
-		 (PublisherName, Publisher_Address, Publisher_Phone)
+		 (Publisher_name, Publisher_Address, Publisher_Phone)
 		 VALUES
 		 ('Hoggart','324 P.O Box..','244-424-4824'),
-		 ('Younguni','null','null');
+		 ('Younguni','3422 Ranier Ave...','254-456-4541');
 
 
 	
@@ -49,26 +49,26 @@ BEGIN
 		INSERT INTO tbl_book   
 		(book_title, book_Publisher)
 		VALUES 
-		('The Lost Tribe',''),
-		('The Great Gatsby',''),
-		('To Kill a Mockingbird',''),
-		('Beloved',''),
-		('Lord of Filies',''),
-		('Color Purple',''),
-		('Break the Dawn',''),
-		('Delta Elite',''),
-		('The Age Of Tear',''),
-		('The Lord of Ring',''),
-		('The Chicken Noodle Soup',''),
-		('GooseBumps',''),
-		('Room with View',''),
-		('Fatal',''),
-		('On the Road',''),
-		('Catching in the rye',''),
-		('Gone',''),
-		('Hole',''),
-		('Cosmos',''),
-		('Heart of Darkness','');
+		('The Lost Tribe','Kyate Corp.'),
+		('The Great Gatsby','Udnt'),
+		('To Kill a Mockingbird','Pheonix'),
+		('Beloved','The Azure'),
+		('Lord of Filies','Willy utd.'),
+		('Color Purple','think_GREEN'),
+		('Break the Dawn','WoWzer'),
+		('Delta Elite','Pandfic'),
+		('The Age Of Tear','Cooldue'),
+		('The Lord of Ring','J.R.R.T'),
+		('The Chicken Noodle Soup','Awmerica'),
+		('GooseBumps','bookWorm'),
+		('Room with View','aPPletree'),
+		('Fatal','LeathPaper'),
+		('On the Road','GoStop'),
+		('Catching in the rye','Windsome'),
+		('Gone','1Printing'),
+		('Hole','Lee Company'),
+		('Cosmos','WizardTounge'),
+		('Heart of Darkness','Papervally');
 
 
 
@@ -117,25 +117,25 @@ BEGIN
 
 	CREATE TABLE tbl_bookCopies(
 		bookCopies_bookID INT PRIMARY KEY NOT NULL IDENTITY (101,1),
-		bookCopies_book INT NOT NULL CONSTRAINT fk_bookName FOREIGN KEY  REFERENCES  tbl_book(bookID)ON UPDATE CASCADE ON DELETE CASCADE,
-		bookCopies_library_branch INT NOT NULL CONSTRAINT fk_branchIdentification FOREIGN KEY REFERENCES tbl_library_branch(branchID)ON UPDATE CASCADE ON DELETE CASCADE,
+		bookCopies_book INT NOT NULL CONSTRAINT fk_bookName FOREIGN KEY  REFERENCES  tbl_book(book_id)ON UPDATE CASCADE ON DELETE CASCADE,
+		bookCopies_library_branch INT NOT NULL CONSTRAINT fk_branchIdentification FOREIGN KEY REFERENCES tbl_library_branch(branch_id)ON UPDATE CASCADE ON DELETE CASCADE,
 		bookCopies_Number_of_Copies INT NOT NULL
 		);
 
 			
 		INSERT INTO tbl_bookCopies
-		(bookCopies_book,bookCopies_library_branch)
+		(bookCopies_bookID,bookCopies_library_branch,bookCopies_Number_of_Copies)
 		VALUES
-		('Lord of filies','2'),
-		('Happy days','2'),
-		('Harper Dew','2'),
-		('White Cat','2'),
-		('Hitler','2'),
-		('The Conrad','2'),
-		('Joy Ride','3'),
-		('YOLO','4'),
-		('Nver too late','5'),
-		('Uprising','3');
+		('10','2','2'),
+		('9','1','3'),
+		('8','1','4'),
+		('7','2','5'),
+		('6','2','4'),
+		('5','2','3'),
+		('4','3','2'),
+		('3','4','7'),
+		('2','3','2'),
+		('1','3','5');
 
 	CREATE TABLE tbl_bookLoan(
 		bookLoan_bookID INT PRIMARY KEY NOT NULL IDENTITY (20,1),
@@ -147,15 +147,16 @@ BEGIN
 		
 	
 		INSERT INTO tbl_bookLoan
-		(bookLoan_BranchID, bookLoan_cardNo,bookLoan_DateOut,bookLoan_DateDue)
-		('Harper Dew', '275' ,'' ,''),
-		('White Cat' ,'257' ,'' ,''),
-		('Hitler', '256', '', ''),
-		('The Conrad', '256' ,'',''),
-		('Joy Ride','36','',''),
-		('YOLO','46','',''),
-		('Nver too late','5','',''),
-		('Uprising','3','');
+		(bookLoan_borrower, bookLoan_library_branch,bookLoan_DateOut,bookLoan_DateDue)
+		VALUES
+		('Harper Dew', '1' ,'01/03/2015' ,'01/09/2015'),
+		('Juinor White ' ,'2' ,'12/23/2014' ,'12/27/2014'),
+		('Hitler Weet', '3', '01/01/2015', '01/11/2015'),
+		('Jhon Conrad', '4' ,'01/05/2015','01/12/2015'),
+		('Joy Ride','5','01/07/2015','01/14/2015'),
+		('Yoloo Park','6','01/15/2015','01/24/2015'),
+		('Nink Impossible','7','01/17/2015','01/25/2015'),
+		('Sunset Uprising','8','02/02/2014','04/05/2015');
 
 		
 	END
