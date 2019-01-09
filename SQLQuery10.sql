@@ -3,7 +3,7 @@ GO
 BEGIN
 
 
-
+--elect*from  tbl_book,tbl_bookAuthor,tbl_Publisher, tbl_bookCopies;
 
 
 	CREATE TABLE tbl_library_branch(
@@ -22,14 +22,14 @@ BEGIN
 		('Western','1001 Abby st..');
 
 
-
+		
 	
 	CREATE TABLE tbl_Publisher(
 		Publisher_name VARCHAR(50) PRIMARY KEY NOT NULL ,
 		Publisher_address VARCHAR(50)  NULL, Publisher_phone varchar(50) NULL
 	);
 
-	select*from tbl_Publisher;
+	
 
 		INSERT INTO tbl_Publisher
 		 (Publisher_name, Publisher_Address, Publisher_Phone)
@@ -63,8 +63,9 @@ BEGIN
 	
 	
 	
+
 	CREATE TABLE tbl_book(
-		book_id INT PRIMARY KEY NOT NULL IDENTITY(10,1),
+		book_id INT PRIMARY KEY NOT NULL IDENTITY(120,1),
 		book_title VARCHAR(50)   NULL, 
 		 --!book_PublisherName VARCHAR (50)  NOT NULL,
 		book_PublisherName VARCHAR(50) NOT NULL CONSTRAINT fk_book_Publisher1 FOREIGN KEY REFERENCES tbl_Publisher(Publisher_name)
@@ -119,8 +120,9 @@ BEGIN
 		('Tony Morr','335-657-5665','546 smitter ave..'),
 		('Jon Uphike','454-545-5454','545 goash ave..');
 
-
-	CREATE TABLE tbl_bookAuthor(
+		
+		select *from tbl_book;
+		cREATE TABLE tbl_bookAuthor(
 		bookAuthor_bookID INT PRIMARY KEY NOT NULL IDENTITY (1000,1), 
 		bookAuthor_book INT NOT NULL CONSTRAINT fk_book_bookID1 FOREIGN KEY REFERENCES tbl_book(book_id) ON UPDATE CASCADE ON DELETE CASCADE,
 		bookAuthor_authorName VARCHAR(50) NULL);
@@ -128,72 +130,73 @@ BEGIN
 		INSERT INTO tbl_bookAuthor
 		(bookAuthor_book,bookAuthor_authorName)
 		VALUES
-		('97','Edwardo Gucci'),
-		('98','F.Scott Fitzgerald'),
-		('99','Harper Lee'),
-		('100','E.B White'),
-		('101','Joe Heller'),
-		('102','Joseph Conrad'),
-		('103','James Joyce'),
-		('104','Emily Dickinson'),
-		('105','Toni Morrison'),
-		('106','John Updike'),
-		('107','Stephen King'),
-		('108','Edwardo Gucci'),
-		('109','F.Scott Fitzgerald'),
-		('110','Harper Lee'),
-		('111','E.B White'),
-		('112','Joe Heller'),
-		('113','Joseph Conrad'),
-		('114','James Joyce'),
-		('115','Emily Dickinson'),
-		('116','Toni Morrison'),
-		('117','John Updike'),
-		('118','Stephen King'),
-		('119','Fuller Dickinson'),
-		('120','Emily Wattson');
 		
-		select*from tbl_bookloan;
+		('121','F.Scott Fitzgerald'),
+		('122','Harper Lee'),
+		('123','Stephen King'),
+		('124','Joe Heller'),
+		('125','Joseph Conrad'),
+		('126','James Joyce'),
+		('127','Emily Dickinson'),
+		('128','Toni Morrison'),
+		('129','John Updike'),
+		('130','Stephen King'),
+		('131','Edwardo Gucci'),
+		('132','F.Scott Fitzgerald'),
+		('133','Harper Lee'),
+		('134','E.B White'),
+		('135','Joe Heller'),
+		('136','Joseph Conrad'),
+		('137','James Joyce'),
+		('138','Emily Dickinson'),
+		('139','Toni Morrison'),
+		('140','John Updike'),
+		('141','Stephen King'),
+		('142','Fuller Dickinson'),
+		('143','Emily Wattson'),
+		('144','Edwardo Gucci');
+	
+
+
+
 		
 		CREATE TABLE tbl_bookCopies(
-		bookCopies_bookID INT PRIMARY KEY NOT NULL IDENTITY (101,1),
+		bookCopies_bookID INT PRIMARY KEY NOT NULL IDENTITY (124,1)_,
 		bookCopies_book INT NOT NULL CONSTRAINT fk_book_bookID FOREIGN KEY REFERENCES  tbl_book(book_id)ON UPDATE CASCADE ON DELETE CASCADE,
 		bookCopies_library_branchID INT NOT NULL constraint fk_branch FOREIGN KEY REFERENCES tbl_library_branch(branch_id)ON UPDATE CASCADE ON DELETE CASCADE,
 		bookCopies_Number_of_Copies INT NOT NULL);
 		
 	
-		select*from tbl_bookCopies;
-		drop table tbl_publisher;
+		
 		
 		
 		INSERT INTO tbl_bookCopies
 		(bookCopies_book,bookCopies_library_branchID,bookCopies_Number_of_Copies)
 		VALUES
 		
-		('97','1','2'),
-		('98','1','3'),
-		('99','1','4'),
-		('100','1','5'),
-		('101','1','4'),
-		('102','1','3'),
-		('103','1','2'),
-		('104','1','7'),
-		('105','1','2'),
-		('106','1','5'),
-		('107','2','2'),
-		('108','2','3'),
-		('109','2','4'),
-		('110','2','5'),
-		('111','2','4'),
-		('112','2','3'),
-		('113','2','2'),
-		('114','2','7'),
-		('115','2','2'),
-		('116','2','5'),
-		('117','3','2'),
-		('118','3','3'),
-		('119','3','4'),
-		('120','3','5');
+		('121','1','2'),
+		('122','1','3'),
+		('123','1','4'),
+		('124','1','5'),
+		('125','1','4'),
+		('126','1','3'),
+		('127','1','2'),
+		('128','1','7'),
+		('129','1','2'),
+		('130','1','5'),
+		('132','2','2'),
+		('133','2','3'),
+		('134','2','4'),
+		('135','2','5'),
+		('136','2','4'),
+		('137','2','3'),
+		('138','2','2'),
+		('139','2','7'),
+		('140','2','2'),
+		('141','2','5'),
+		('142','3','2'),
+		('143','3','3'),
+		('144','3','4');
 		
 
 	CREATE TABLE tbl_bookLoan(
