@@ -1,11 +1,11 @@
-
+﻿ 
 /****** StoredProcedure [dbo].[getNoneCkeckedoutBorrowers]    ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 
- ALTER PROCEDURE [dbo].[getNoneCkeckedoutBorrowers]
+ CREATE PROCEDURE [dbo].[getNoneCkeckedoutBorrowers]
  
 
 AS
@@ -50,10 +50,10 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
- ALTER PROCEDURE [dbo].[getNumberCopies] 
+ CREATE PROCEDURE getNumberCopies
  
-@bookName VARCHAR(50)  
-AS
+ 
+DECLARE @bookName VARCHAR(50)
 BEGIN
 
 
@@ -64,6 +64,12 @@ FROM tbl_book  a1
 	INNER JOIN tbl_bookCopies a3 ON a3.bookID= a1.book_title 
 	WHERE a1.book_title= @bookName
 	;
+
+branch_id(branch_name=Sharpstown(Library_branch)
+book_id(Title=The Lost Tribe('Book'))
+πNo of copies(Book Copies ∗ Sharps id ∗ Tribe id)
+
+
 
 END
 
