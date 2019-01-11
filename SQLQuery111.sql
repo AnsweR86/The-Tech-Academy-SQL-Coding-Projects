@@ -19,9 +19,9 @@ GO
 -- Description:	QuanityofBookinSharpstown
 -- =============================================
 
-USE [LibraryInventStatus]
+USE
  
-
+ drop database  [LibraryInventStatus]
 BEGIN
 	
 --COUNTING 'THE LOST TRIBE' IN SHARPSTOWN	

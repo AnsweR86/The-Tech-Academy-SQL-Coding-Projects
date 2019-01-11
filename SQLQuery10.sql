@@ -1,7 +1,6 @@
 CREATE DATABASE[LibraryInventStatus]
-
-USE[LibraryInventStatus]
-
+go
+use [LibraryInventStatus]
 BEGIN
 
 
@@ -64,7 +63,7 @@ VALUES
 CREATE TABLE BOOKS(
 book_id INT PRIMARY KEY NOT NULL IDENTITY(120,1),
 book_title VARCHAR(50)   NULL, 
-book_PublisherName VARCHAR(50) NOT NULL CONSTRAINT fk_book_Publisher1 FOREIGN KEY REFERENCES tbl_Publisher(Publisher_name)
+book_PublisherName VARCHAR(50) NOT NULL CONSTRAINT fk_book_Publisher1 FOREIGN KEY REFERENCES publisher(Publisher_name)
 );
 
 
@@ -122,7 +121,7 @@ VALUES
 --TABLE 5 AUTHOR
 CREATE TABLE BOOK_AUTHORS(
 bookAuthor_bookID INT PRIMARY KEY NOT NULL IDENTITY (1000,1), 
-bookAuthor_book INT NOT NULL CONSTRAINT fk_book_bookID1 FOREIGN KEY REFERENCES tbl_book(book_id) ON UPDATE CASCADE ON DELETE CASCADE,
+bookAuthor_book INT NOT NULL CONSTRAINT fk_book_bookID1 FOREIGN KEY REFERENCES books(book_id) ON UPDATE CASCADE ON DELETE CASCADE,
 bookAuthor_authorName VARCHAR(50) NULL);
 
 
@@ -152,8 +151,7 @@ VALUES
 ('140','John Updike'),
 ('141','Stephen King'),
 ('142','Fuller Dickinson'),
-('143','Emily Wattson'),
-('144','Edwardo Gucci');
+('143','Emily Wattson');
 	
 
 	
@@ -161,8 +159,8 @@ VALUES
 --TABLE 6 COPIES
 CREATE TABLE BOOK_COPIES(
 bookCopies_bookID INT PRIMARY KEY NOT NULL IDENTITY (124,1),
-bookCopies_book INT NOT NULL CONSTRAINT fk_book_bookID FOREIGN KEY REFERENCES  tbl_book(book_id)ON UPDATE CASCADE ON DELETE CASCADE,
-bookCopies_library_branchID INT NOT NULL constraint fk_branch FOREIGN KEY REFERENCES tbl_library_branch(branch_id)ON UPDATE CASCADE ON DELETE CASCADE,
+bookCopies_book INT NOT NULL CONSTRAINT fk_book_bookID FOREIGN KEY REFERENCES  books(book_id)ON UPDATE CASCADE ON DELETE CASCADE,
+bookCopies_library_branchID INT NOT NULL constraint fk_branch FOREIGN KEY REFERENCES library_branch(branch_id)ON UPDATE CASCADE ON DELETE CASCADE,
 bookCopies_Number_of_Copies INT NOT NULL);
 
 
@@ -196,8 +194,8 @@ VALUES
 --TABLE 7 BOOK LOANS
 CREATE TABLE BOOK_LOANS(
 bookLoan_bookID INT PRIMARY KEY NOT NULL IDENTITY (20,1),
-bookLoan_library_branchID INT NOT NULL CONSTRAINT fk_library_branch_id FOREIGN KEY REFERENCES tbl_library_branch(branch_id)ON UPDATE CASCADE ON DELETE CASCADE,
-bookLoan_CardNo INT NOT NULL CONSTRAINT fk_cardNo FOREIGN KEY REFERENCES tbl_borrower(borrower_cardNo)ON UPDATE CASCADE ON DELETE CASCADE,
+bookLoan_library_branchID INT NOT NULL CONSTRAINT fk_library_branch_id FOREIGN KEY REFERENCES library_branch(branch_id)ON UPDATE CASCADE ON DELETE CASCADE,
+bookLoan_CardNo INT NOT NULL CONSTRAINT fk_cardNo FOREIGN KEY REFERENCES borrower(borrower_cardNo)ON UPDATE CASCADE ON DELETE CASCADE,
 bookLoan_DateOut DATE  NULL, bookLoan_DateDue DATE  NULL);
 	
 	
@@ -254,7 +252,6 @@ VALUES
 ('2','108','02/02/2014','04/05/2015'),
 ('2','108','04/04/2014','04/09/2014'),
 ('2','108','06/07/2014','06/18/2014');
-
 
 
 END
