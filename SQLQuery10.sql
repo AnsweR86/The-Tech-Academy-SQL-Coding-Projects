@@ -1,6 +1,6 @@
 
 
-CREATE PROC
+BEGIN
 
 
 	--select*from  tbl_book,tbl_bookAuthor,tbl_Publisher, tbl_bookCopies;
