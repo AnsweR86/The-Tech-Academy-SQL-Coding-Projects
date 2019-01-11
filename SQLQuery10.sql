@@ -1,4 +1,4 @@
-CREATE DATABASE[LibraryInventStatus]
+
 go
 use [LibraryInventStatus]
 BEGIN
@@ -7,13 +7,13 @@ BEGIN
 
 --	TABLE 1 LIBRARY BRANCH
 CREATE TABLE LIBRARY_BRANCH(
-branch_id INT PRIMARY KEY NOT NULL IDENTITY (1,1),
-branch_name VARCHAR(50)  NOT NULL, branch_address VARCHAR (50)   NULL                                                                    
+ID INT PRIMARY KEY NOT NULL IDENTITY (1,1),
+Name VARCHAR(50)  NOT NULL, branch_address VARCHAR (50)   NULL                                                                    
 );
 
 	
 INSERT INTO LIBRARY_BRANCH
-(branch_name, branch_address)
+(Name, branch_address)
 VALUES
 ('Sharpstown','1000 Northview Ave. So...'),
 ('Central','P.O Box Central Distric'),
@@ -24,13 +24,13 @@ VALUES
 	
 --TABLE 2 PUBLISHER
 CREATE TABLE PUBLISHER(
-Publisher_name VARCHAR(50) PRIMARY KEY NOT NULL,
-Publisher_address VARCHAR(50)  NULL, Publisher_phone varchar(50) NULL
+Name VARCHAR(50) PRIMARY KEY NOT NULL,
+Publisher_address VARCHAR(50)  NULL, phone varchar(50) NULL
 );
 
 	
 INSERT INTO PUBLISHER
-(Publisher_name, Publisher_Address, Publisher_Phone)
+(Name, Publisher_Address, Phone)
 VALUES
  ('Hoggart','324 P.O Box..','244-424-4824'),
  ('Younguni','3422 Ranier Ave...','254-456-4541'),
@@ -61,14 +61,14 @@ VALUES
 	
 --TABLE 3 BOOK
 CREATE TABLE BOOKS(
-book_id INT PRIMARY KEY NOT NULL IDENTITY(120,1),
-book_title VARCHAR(50)   NULL, 
-book_PublisherName VARCHAR(50) NOT NULL CONSTRAINT fk_book_Publisher1 FOREIGN KEY REFERENCES publisher(Publisher_name)
+Id INT PRIMARY KEY NOT NULL IDENTITY(120,1),
+Title VARCHAR(50)   NULL, 
+PublisherName VARCHAR(50) NOT NULL CONSTRAINT fk_book_Publisher1 FOREIGN KEY REFERENCES publisher(Publisher_name)
 );
 
 
 INSERT INTO BOOKS 
-(book_title, book_PublisherName)
+(title, PublisherName)
 VALUES 
 ('Hairy Potter','Hoggart'),
 ('DeadlySin','Younguni'),
@@ -97,13 +97,13 @@ VALUES
 
 --TABLE4 BORROWER
 CREATE TABLE BORROWER(
-borrower_cardNo INT PRIMARY KEY NOT NULL IDENTITY(100,1),
-borrower_name VARCHAR(50)  NOT NULL,borrower_address VARCHAR (50)  NOT NULL, borrower_phone VARCHAR(50) NOT NULL
+cardNo INT PRIMARY KEY NOT NULL IDENTITY(100,1),
+name VARCHAR(50)  NOT NULL,borrower_address VARCHAR (50)  NOT NULL, phone VARCHAR(50) NOT NULL
 );
 
 
 INSERT INTO BORROWER
-(borrower_name,borrower_phone,borrower_address)
+(name,phone,borrower_address)
 VALUES
 ('Edwardo Marriotted','343-434-3433','343 smith st..'),
 ('Scott Fizgerd','434-434-7676','453 highsuit pl..'),
@@ -120,13 +120,13 @@ VALUES
 
 --TABLE 5 AUTHOR
 CREATE TABLE BOOK_AUTHORS(
-bookAuthor_bookID INT PRIMARY KEY NOT NULL IDENTITY (1000,1), 
-bookAuthor_book INT NOT NULL CONSTRAINT fk_book_bookID1 FOREIGN KEY REFERENCES books(book_id) ON UPDATE CASCADE ON DELETE CASCADE,
-bookAuthor_authorName VARCHAR(50) NULL);
+bookID INT PRIMARY KEY NOT NULL IDENTITY (1000,1), 
+book INT NOT NULL CONSTRAINT fk_book_bookID1 FOREIGN KEY REFERENCES books(book_id) ON UPDATE CASCADE ON DELETE CASCADE,
+authorName VARCHAR(50) NULL);
 
 
 INSERT INTO BOOK_AUTHORS
-(bookAuthor_book,bookAuthor_authorName)
+(book,authorName)
 VALUES
 
 ('121','F.Scott Fitzgerald'),
@@ -158,14 +158,14 @@ VALUES
 
 --TABLE 6 COPIES
 CREATE TABLE BOOK_COPIES(
-bookCopies_bookID INT PRIMARY KEY NOT NULL IDENTITY (124,1),
-bookCopies_book INT NOT NULL CONSTRAINT fk_book_bookID FOREIGN KEY REFERENCES  books(book_id)ON UPDATE CASCADE ON DELETE CASCADE,
-bookCopies_library_branchID INT NOT NULL constraint fk_branch FOREIGN KEY REFERENCES library_branch(branch_id)ON UPDATE CASCADE ON DELETE CASCADE,
-bookCopies_Number_of_Copies INT NOT NULL);
+ID INT PRIMARY KEY NOT NULL IDENTITY (124,1),
+book INT NOT NULL CONSTRAINT fk_book_bookID FOREIGN KEY REFERENCES  books(id)ON UPDATE CASCADE ON DELETE CASCADE,
+library_branchID INT NOT NULL constraint fk_branch FOREIGN KEY REFERENCES library_branch(id)ON UPDATE CASCADE ON DELETE CASCADE,
+Number_of_Copies INT NOT NULL);
 
 
 INSERT INTO BOOK_COPIES
-(bookCopies_book,bookCopies_library_branchID,bookCopies_Number_of_Copies)
+(book,library_branchID,Number_of_Copies)
 VALUES
 ('121','1','2'),
 ('122','1','3'),
@@ -193,14 +193,14 @@ VALUES
 
 --TABLE 7 BOOK LOANS
 CREATE TABLE BOOK_LOANS(
-bookLoan_bookID INT PRIMARY KEY NOT NULL IDENTITY (20,1),
-bookLoan_library_branchID INT NOT NULL CONSTRAINT fk_library_branch_id FOREIGN KEY REFERENCES library_branch(branch_id)ON UPDATE CASCADE ON DELETE CASCADE,
-bookLoan_CardNo INT NOT NULL CONSTRAINT fk_cardNo FOREIGN KEY REFERENCES borrower(borrower_cardNo)ON UPDATE CASCADE ON DELETE CASCADE,
-bookLoan_DateOut DATE  NULL, bookLoan_DateDue DATE  NULL);
-	
+bookID INT PRIMARY KEY NOT NULL IDENTITY (20,1),
+library_branchID INT NOT NULL CONSTRAINT fk_library_branch_id FOREIGN KEY REFERENCES library_branch(id)ON UPDATE CASCADE ON DELETE CASCADE,
+CardNo INT NOT NULL CONSTRAINT fk_cardNo FOREIGN KEY REFERENCES borrower(cardNo)ON UPDATE CASCADE ON DELETE CASCADE,
+DateOut DATE  NULL, DateDue DATE  NULL);
+
 	
 INSERT INTO BOOK_LOANS
-(bookLoan_library_branchID,bookLoan_CardNo,bookLoan_DateOut,bookLoan_DateDue)
+(library_branchID,CardNo,DateOut,DateDue)
 VALUES
 ('1','100' ,'01/03/2015' ,'01/09/2015'),
 ('1','100' ,'12/23/2014' ,'12/27/2014'),

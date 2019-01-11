@@ -68,7 +68,7 @@ ORDER BY a1.borrower_Name
 --SELECT a1.book_title AS 'Title of Book by Stepeh King', COUNT(*) AS 'Quanity of book'
 SELECT bookCopies_Number_of_Copies 
 FROM BOOK_COPIES
-JOIN BOOK_AUTHORS AS "Authors" ON book_id=book_Author_bookID
+JOIN BOOK_AUTHORS AS "Authors" ON BOOK_COPIES.bookCopies_bookID=AUTHORS.bookAuthor_bookID
 JOIN BOOK_COPIES  ON bookCopies_bookID = bookAuthor_bookID
 INNER JOIN books a1 ON a1.book_id = a1.book_id
 INNER JOIN library_branch a5 ON a5.branch_id = a4.bookCopies_library_branchID
@@ -78,3 +78,4 @@ GROUP BY a1.book_title
 
 
 END
+drop database [LibraryInventStatus]
