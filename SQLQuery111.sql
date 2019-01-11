@@ -65,9 +65,11 @@ HAVING COUNT(a2.bookloan_CardNo)>5
 ORDER BY a1.borrower_Name
 
 --book by stephen King in Central
-SELECT a1.book_title AS 'Title of Book by Stepeh King', COUNT(*) AS 'Quanity of book'
-FROM book_Authors a2 INNER JOIN book_Authors a3 ON a3.bookAuthor_authorName=a2.bookAuthor_authorName
-INNER JOIN book_Copies a4 ON a4.bookCopies_bookID = a2.bookAuthor_bookID
+--SELECT a1.book_title AS 'Title of Book by Stepeh King', COUNT(*) AS 'Quanity of book'
+SELECT bookCopies_Number_of_Copies 
+FROM BOOK_COPIES
+JOIN BOOK_AUTHORS AS "Authors" ON book_id=book_Author_bookID
+JOIN BOOK_COPIES  ON bookCopies_bookID = bookAuthor_bookID
 INNER JOIN books a1 ON a1.book_id = a1.book_id
 INNER JOIN library_branch a5 ON a5.branch_id = a4.bookCopies_library_branchID
 WHERE a2.bookAuthor_authorName='Stephen King' AND a4.bookCopies_library_branchID='2' or a5.branch_name='Central'
