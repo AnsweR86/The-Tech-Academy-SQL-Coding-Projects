@@ -19,9 +19,9 @@ GO
 -- Description:	QuanityofBookinSharpstown
 -- =============================================
 
-CREATE PROC[dbo].[LibraryInventory]
+USE [LibraryInventStatus]
  
-AS
+
 BEGIN
 	
 --COUNTING 'THE LOST TRIBE' IN SHARPSTOWN	
