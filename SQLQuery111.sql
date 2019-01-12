@@ -26,9 +26,9 @@ GO
 BEGIN
 	
 --COUNTING 'THE LOST TRIBE' IN SHARPSTOWN	
-SELECT Count (bookCopies_Number_of_Copies) AS 'Number of book called ''THE LOST TRIBE'' in Sharpstown'
-FROM BOOKS,BOOK_COPIES,library_branch
-WHERE book_title ='The Lost Tribe' AND branch_name='Sharpstown'
+SELECT Count (Number_of_Copies) AS 'Number of book called ''THE LOST TRIBE'' in Sharpstown'
+FROM ,BOOK_COPIES,library_branch
+WHERE title ='The Lost Tribe' AND branch_name='Sharpstown'
 
 --COUNTING 'THE LOST TRIBE' IN EVERY BRANCH
 SELECT bookCopies_library_branchID AS 'Branchs of Library',COUNT (bookCopies_Number_of_Copies) AS 'Quanity of book called ''The Lost Tribe''in each Branch'

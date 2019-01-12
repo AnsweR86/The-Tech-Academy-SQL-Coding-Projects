@@ -24,13 +24,13 @@ VALUES
 	
 --TABLE 2 PUBLISHER
 CREATE TABLE PUBLISHER(
-Name VARCHAR(50) PRIMARY KEY NOT NULL,
+publisher_Name VARCHAR(50) PRIMARY KEY NOT NULL,
 Publisher_address VARCHAR(50)  NULL, phone varchar(50) NULL
 );
 
 	
 INSERT INTO PUBLISHER
-(Name, Publisher_Address, Phone)
+(publisher_Name, Publisher_Address, Phone)
 VALUES
  ('Hoggart','324 P.O Box..','244-424-4824'),
  ('Younguni','3422 Ranier Ave...','254-456-4541'),
